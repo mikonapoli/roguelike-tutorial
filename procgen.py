@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 from typing import Iterator, Tuple, List, TYPE_CHECKING
 
+import entity_factories
 from game_map import GameMap
 import tile_types
 
@@ -39,15 +40,32 @@ class RectangularRoom:
             and self.y2 >= other.y1
         )
 
+def place_entities(
+    room: RectangularRoom,
+    dungeon: GameMap,
+    maximum_monsters: int
+):
+    number_of_monsters = random.randint(0, maximum_monsters)
+    for _ in range(number_of_monsters):
+        x= random.randint(room.x1 + 1, room.x2 - 1)
+        y = random.randint(room.y1 + 1, room.y2 - 1)
+
+        if all(entity.x != x or entity.y != y for entity in dungeon.entities):
+            if random.random() < .8:
+                entity_factories.orc.spawn(dungeon, x, y)
+            else:
+                entity_factories.troll.spawn(dungeon, x, y)
+
 
 def generate_dungeon(max_rooms: int, 
 room_min_size: int,
 room_max_size: int,
 map_width: int,
 map_height: int,
+max_monsters_per_room: int,
 player: Entity) -> GameMap:
 
-    dungeon = GameMap(map_width, map_height)
+    dungeon = GameMap(map_width, map_height, entities=[player])
 
     rooms: List[RectangularRoom] = []
 
@@ -61,6 +79,7 @@ player: Entity) -> GameMap:
         if all([not new_room.intersects(room) for room in rooms]):
             rooms.append(new_room)
             dungeon.tiles[new_room.inner] = tile_types.floor
+            place_entities(new_room, dungeon, max_monsters_per_room)
     
     player.x, player.y = rooms[0].center
 

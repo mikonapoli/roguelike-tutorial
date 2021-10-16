@@ -1,8 +1,10 @@
+import copy
+
 import tcod
 from engine import Engine
-from entity import Entity
 
-from event_handler import EventHandler
+import entity_factories
+from input_handlers import EventHandler
 from procgen import generate_dungeon
 
 tileset_file = "assets/dejavu10x10_gs_tc.png"
@@ -19,6 +21,8 @@ def main() -> None:
     room_min_size = 6
     max_rooms = 30
 
+    max_monsters_per_room = 2
+
     tileset = tcod.tileset.load_tilesheet(
         tileset_file, 32, 8, tcod.tileset.CHARMAP_TCOD
     )
@@ -28,15 +32,19 @@ def main() -> None:
     player_x = int(screen_width // 2)
     player_y = int(screen_height // 2)
 
-    player = Entity(player_x, player_y, "@", (255, 255, 255))
-    npc = Entity(player_x - 5, player_y, "@", (255, 255, 0))
-    entities = {npc, player}
+    player = copy.deepcopy(entity_factories.player)
 
-    game_map = generate_dungeon(max_rooms, room_min_size, room_max_size, map_width, map_height, player)
-
-    engine = Engine(
-        entities=entities, event_handler=event_handler, game_map=game_map, player=player
+    game_map = generate_dungeon(
+        max_rooms=max_rooms, 
+        room_min_size=room_min_size, 
+        room_max_size=room_max_size, 
+        map_width=map_width, 
+        map_height=map_height, 
+        max_monsters_per_room=max_monsters_per_room,
+        player=player
     )
+
+    engine = Engine(event_handler=event_handler, game_map=game_map, player=player)
 
     with tcod.context.new_terminal(
         screen_width,
@@ -51,8 +59,6 @@ def main() -> None:
             engine.render(console=root_console, context=context)
             events = tcod.event.wait()
             engine.handle_events(events)
-
-    print("All good")
 
 
 if __name__ == "__main__":
