@@ -10,7 +10,7 @@ import tile_types
 import tcod
 
 if TYPE_CHECKING:
-    from entity import Entity
+    from entity import Engine
 
 
 class RectangularRoom:
@@ -63,9 +63,11 @@ room_max_size: int,
 map_width: int,
 map_height: int,
 max_monsters_per_room: int,
-player: Entity) -> GameMap:
+engine: Engine) -> GameMap:
 
-    dungeon = GameMap(map_width, map_height, entities=[player])
+    player = engine.player
+
+    dungeon = GameMap(engine, map_width, map_height, entities=[player])
 
     rooms: List[RectangularRoom] = []
 
@@ -81,7 +83,7 @@ player: Entity) -> GameMap:
             dungeon.tiles[new_room.inner] = tile_types.floor
             place_entities(new_room, dungeon, max_monsters_per_room)
     
-    player.x, player.y = rooms[0].center
+    player.place(*rooms[0].center, dungeon)
 
 
     for i, room in enumerate(rooms[1:]):
