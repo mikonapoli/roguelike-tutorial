@@ -1,4 +1,4 @@
-from numpy import deprecate_with_doc
+import color
 from components.base_component import BaseComponent
 
 from input_handlers import GameOverEventHandler
@@ -24,8 +24,10 @@ class Fighter(BaseComponent):
     
     def die(self) -> None:
         msg = f"{self.entity.name} is dead"
+        msg_color = color.ENEMY_DIE
         if self.engine.player is self.entity:
             msg = "You died!"
+            msg_color = color.PLAYER_DIE
             self.engine.event_handler = GameOverEventHandler(self.engine)
 
         self.entity.char = "%"
@@ -34,5 +36,5 @@ class Fighter(BaseComponent):
         self.entity.ai = None
         self.entity.render_order = RenderOrder.CORPSE
         self.entity.name = f"Remains of {self.entity.name}"
-        print(msg)
+        self.engine.message_log.add_message(msg, msg_color)
         
