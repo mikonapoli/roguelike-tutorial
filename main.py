@@ -25,10 +25,7 @@ def main() -> None:
     tileset = tcod.tileset.load_tilesheet(
         tileset_file, 32, 8, tcod.tileset.CHARMAP_TCOD
     )
-
-    player_x = int(screen_width // 2)
-    player_y = int(screen_height // 2)
-
+    
     player = copy.deepcopy(entity_factories.player)
     engine = Engine(player=player)
 
