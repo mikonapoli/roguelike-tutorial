@@ -1,60 +1,47 @@
-name: base
+name: rogue
 channels:
   - fastchan
   - defaults
 dependencies:
-  - brotlipy=0.7.0=py39h9ed2024_1003
-  - bzip2=1.0.8=h1de35cc_0
-  - c-ares=1.17.1=h9ed2024_0
+  - appdirs=1.4.4=pyhd3eb1b0_0
+  - attrs=21.2.0=pyhd3eb1b0_0
+  - black=19.10b0=py_0
+  - blas=1.0=mkl
   - ca-certificates=2021.9.30=hecd8cb5_1
-  - certifi=2021.5.30=py39hecd8cb5_0
-  - cffi=1.14.6=py39h2125817_0
-  - chardet=4.0.0=py39hecd8cb5_1003
-  - conda=4.10.3=py39hecd8cb5_0
-  - conda-package-handling=1.7.3=py39h9ed2024_1
-  - cryptography=3.4.7=py39h2fd3fbb_0
-  - icu=58.2=h0a44026_3
-  - idna=2.10=pyhd3eb1b0_0
-  - krb5=1.19.2=hcd88c3b_0
-  - libarchive=3.5.2=h2b60450_1
-  - libcurl=7.79.1=hf45b732_1
+  - certifi=2021.10.8=py39hecd8cb5_0
+  - click=8.0.1=pyhd3eb1b0_0
+  - importlib-metadata=4.8.1=py39hecd8cb5_0
+  - intel-openmp=2021.3.0=hecd8cb5_3375
   - libcxx=12.0.0=h2f01273_0
-  - libedit=3.1.20210714=h9ed2024_0
-  - libev=4.33=h9ed2024_1
   - libffi=3.3=hb1e8313_2
-  - libiconv=1.16=haf1e3a3_0
-  - libnghttp2=1.43.0=h07e645a_0
-  - libsolv=0.7.19=hcf210ce_5
-  - libssh2=1.10.0=h52ee1ee_2
-  - libxml2=2.9.12=hcdb78fc_0
-  - lz4-c=1.9.3=h23ab428_1
-  - lzo=2.10=haf1e3a3_2
-  - mamba=0.16.0=py39hb671511_0
+  - mkl=2021.3.0=hecd8cb5_517
+  - mkl-service=2.4.0=py39h9ed2024_0
+  - mkl_fft=1.3.0=py39h4a7008c_2
+  - mkl_random=1.2.2=py39hb2f4e1b_0
+  - mypy_extensions=0.4.3=py39hecd8cb5_0
   - ncurses=6.2=h0a44026_1
+  - numpy=1.20.3=py39h4b4dc7a_0
+  - numpy-base=1.20.3=py39he0bd621_0
   - openssl=1.1.1l=h9ed2024_0
-  - pip=21.1.3=py39hecd8cb5_0
-  - pycosat=0.6.3=py39h9ed2024_0
-  - pycparser=2.20=py_2
-  - pyopenssl=20.0.1=pyhd3eb1b0_1
-  - pysocks=1.7.1=py39hecd8cb5_0
-  - python=3.9.5=h88f2d9e_3
-  - python.app=3=py39h9ed2024_0
-  - python_abi=3.9=2_cp39
+  - pathspec=0.7.0=py_0
+  - pip=21.2.4=py39hecd8cb5_0
+  - python=3.9.7=h88f2d9e_1
   - readline=8.1=h9ed2024_0
-  - reproc=14.2.3=h0d85af4_0
-  - reproc-cpp=14.2.3=he49afe7_0
-  - requests=2.25.1=pyhd3eb1b0_0
-  - ruamel_yaml=0.15.100=py39h9ed2024_0
-  - setuptools=52.0.0=py39hecd8cb5_0
+  - regex=2021.8.3=py39h9ed2024_0
+  - setuptools=58.0.4=py39hecd8cb5_0
   - six=1.16.0=pyhd3eb1b0_0
   - sqlite=3.36.0=hce871da_0
-  - tk=8.6.10=hb0a8c7a_0
-  - tqdm=4.61.2=pyhd3eb1b0_1
-  - tzdata=2021a=h52ac0ba_0
-  - urllib3=1.26.6=pyhd3eb1b0_1
-  - wheel=0.36.2=pyhd3eb1b0_0
+  - tk=8.6.11=h7bc2e8c_0
+  - toml=0.10.2=pyhd3eb1b0_0
+  - typed-ast=1.4.3=py39h9ed2024_1
+  - typing_extensions=3.10.0.2=pyh06a4308_0
+  - tzdata=2021a=h5d7bf9c_0
+  - wheel=0.37.0=pyhd3eb1b0_1
   - xz=5.2.5=h1de35cc_0
-  - yaml=0.2.5=haf1e3a3_0
+  - zipp=3.6.0=pyhd3eb1b0_0
   - zlib=1.2.11=h1de35cc_3
-  - zstd=1.5.0=h582d3a0_0
-prefix: /Users/miko/opt/miniconda3
+  - pip:
+    - cffi==1.14.6
+    - pycparser==2.20
+    - tcod==13.0.0
+prefix: /Users/miko/opt/miniconda3/envs/rogue
